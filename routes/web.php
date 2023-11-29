@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\login;
-use App\Http\Controllers\printer;
+use App\Http\Controllers\prodak;
 use App\Http\Controllers\register;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard;
@@ -16,7 +16,7 @@ use App\Http\Controllers\transaksiCon;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', [printer::class, 'home']);
+Route::get('/', [prodak::class, 'home']);
 
 Route::get('/transaksi/tampil', [transaksiCon::class, 'index'])->name('indextransaksi')->middleware('auth');
 Route::get('/transaksi/input', [transaksiCon::class, 'input'])->name('inputtransaksi')->middleware('auth');
@@ -27,14 +27,14 @@ Route::get('/transaksi/delete/{id}', [transaksiCon::class, 'delete'])->name('del
 Route::get('/transaksi/upload', [transaksiCon::class, 'upload'])->name('upload')->middleware('auth');
 Route::post('/transaksi/uploadproses', [transaksiCon::class, 'uploadproses'])->name('uploadproses')->middleware('auth');
 
-Route::get('/printer/tampil', [printer::class, 'index'])->name('indexprinter')->middleware('auth');
-Route::get('/prnter/input', [printer::class, 'input'])->name('inputprinter')->middleware('auth');
-Route::post('/printer/storeinput', [printer::class, 'storeinput'])->name('storeInputprinter')->middleware('auth');
-Route::get('/printer/update/{id}', [printer::class, 'update'])->name('updateprinter')->middleware('auth');
-Route::post('/printer/storeupdate', [printer::class, 'storeupdate'])->name('storeUpdateprinter')->middleware('auth');
-Route::get('/printer/delete/{id}', [printer::class, 'delete'])->name('deleteprinter')->middleware('auth');
-Route::get('/printer/upload', [printer::class, 'upload'])->name('upload')->middleware('auth');
-Route::post('/printer/uploadproses', [printer::class, 'uploadproses'])->name('uploadproses')->middleware('auth');
+Route::get('/prodak/tampil', [prodak::class, 'index'])->name('indexprodak')->middleware('auth');
+Route::get('/prnter/input', [prodak::class, 'input'])->name('inputprodak')->middleware('auth');
+Route::post('/prodak/storeinput', [prodak::class, 'storeinput'])->name('storeInputprodak')->middleware('auth');
+Route::get('/prodak/update/{id}', [prodak::class, 'update'])->name('updateprodak')->middleware('auth');
+Route::post('/prodak/storeupdate', [prodak::class, 'storeupdate'])->name('storeUpdateprodak')->middleware('auth');
+Route::get('/prodak/delete/{id}', [prodak::class, 'delete'])->name('deleteprodak')->middleware('auth');
+Route::get('/prodak/upload', [prodak::class, 'upload'])->name('upload')->middleware('auth');
+Route::post('/prodak/uploadproses', [prodak::class, 'uploadproses'])->name('uploadproses')->middleware('auth');
 
 Route::get('/login', [login::class, 'login'])->name('login');
 Route::post('actionlogin', [login::class, 'actionlogin'])->name('actionlogin');

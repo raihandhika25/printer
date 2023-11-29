@@ -31,7 +31,7 @@
         <div class="container d-flex align-items-center
     justify-content-between">
             <div class="logo">
-                <h1><a href="index.html">Toko Printer</a> </h1> <!-- Uncomment below if
+                <h1><a href="index.html">Toko Laptop</a> </h1> <!-- Uncomment below if
     you prefer to use an image logo -->
                 <!-- <a href=" index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
             </div>
@@ -72,43 +72,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                    <h1 data-aos="fade-up">Cetak Kenanganmu Dengan Printer Kami</h1>
-                    <h2 data-aos="fade-up" data-aos-delay="400">Toko Printer Terbaik dan Berkualitas</h2>
+                    <h1 data-aos="fade-up">Cetak Kenanganmu Dengan Laptop Kami</h1>
+                    <h2 data-aos="fade-up" data-aos-delay="400">Toko Laptop Dijamin Aseli</h2>
                     <div data-aos="fade-up" data-aos-delay="800">
                         <a href="/login" class="btn-get-started scrollto">Ayo Gabung</a>
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left" data-aos-delay="200">
-                    <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
+                    <img src="assets/img/halaman.png" class="img-fluid animated" alt="">
                 </div>
             </div>
         </div>
 
     </section><!-- End Hero -->
 
-    <!-- ======= Footer ======= -->
-    <footer id="footer">
-        <div class="container">
-            <div class="row d-flex align-items-center">
-                <div class="col-lg-6 text-lg-left text-center">
-                    <div class="copyright">
-                        &copy; Copyright <strong>Zulfahrizal</strong>. All Rights Reserved
-                    </div>
-                    <div class="credits">
-                        Designed by <a href="https://rpl-tamsis2jakarta.webnode.page/">RPL Tamsis 2</a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <nav class="footer-links text-lg-right text-center pt-2 pt-lg-0">
-                        <a href="/" class="scrollto">Home</a>
-                        <a href="#produk" class="scrollto">Produk</a>
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Use</a>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </footer><!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

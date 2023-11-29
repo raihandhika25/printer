@@ -1,72 +1,82 @@
 @extends('master')
 @section('konten')
     <div class="container-fluid">
-        <div class="text-end m-2"><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalTambahbiodata"> +
-                Tambah produk Baru</button></div>
+        
         @if (session('message'))
             <div class="alert alert-success m-3"> {{ session('message') }} </div>
         @endif
         <table class="table table-dark table-hover m-lg-2">
             <tr>
-                <th>nis</th>
+                <th>gambar</th>
+                <th>id</th>
                 <th>Nama</th>
-                <th>alamat</th>
-                <th>telp</th>
-                <th>foto</th>
+                <th>harga</th>
+                <th>hasil</th>
                 <th>opsi</th>
-            </tr>
-            @foreach ($biodata as $p)
+            </tr>   
+            @foreach ($transaksi as $p)
                 <tr>
-                    <td> {{ $p->nis }} </td>
-                    <td> {{ $p->nama }} </td>
-                    <td> {{ $p->alamat }} </td>
-                    <td> {{ $p->telp }} </td>
-                    <td> {{ $p->foto }}<br><img src="/assets/img/{{ $p->foto }}" alt="" width="80px"
-                            height="100px"> </td>
+                    <td> {{ $p->kode_pembelian }} </td>
+                    <td> {{ $p->kode_produk }} </td>
+                    <td> {{ $p->banyak }} </td>
+                    <td> {{ $p->bayar }} </td>
+                    <td> {{ $p->status}} </td>
+                    <td>    
                     <td>
+                        @if(auth()->user()->role == 'admin')
+                        <button class="btn--btn-info" data-bs-toggle="modal"
+                        data-bs-target="#modalupdateprodak{{$p->kode_pembelian}}">Update</button>
 
-                        <button class="btn btn-info" data-bs-toggle="modal"
-                            data-bs-target="#ModalUpdateproduk{{ $p->nis }}">Update</button>
-                        |
-                        <button class="btn btn-danger" data-bs-toggle="modal"
-                            data-bs-target="#ModalDeletebiodata{{ $p->nis }}">Delete</button>
+                        <button class="btn--btn-info" data-bs-toggle="modal"
+                        data-bs-target="#modalupdateprodak{{$p->kode_pembelian}}">Delet</button>
+                        @endif   
                     </td>
                 </tr>
 
-                <!-- Ini tampil form update produk -->
-                <div class="modal fade" id="ModalUpdateproduk{{ $p->nis }}" tabindex="-1"
+                <!-- Ini tampil form update transaksi -->
+                <div class="modal fade" id="ModalUpdatetransaksi{{ $p->kode_pembelian }}" tabindex="-1"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Update produk</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Update transaksi</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="/biodata/storeupdate" method="post" class="form-floating">
+                                <form action="/transaksi" method="post" class="form-floating">
                                     @csrf
                                     <div class="form-floating p-1">
                                         <input type="text" name="nis" id="nis" readonly class="form-control"
-                                            value="{{ $p->nis }}">
-                                        <label for="floatingInputValue">nis</label>
+                                            value="{{ $p->kode_pembelian }}">
+                                        <label for="floatingInputValue">kode</label>
                                     </div>
                                     <div class="form-floating p-1">
                                         <input type="text" name="nama" required="required" class="form-control"
-                                            value="{{ $p->nama }}">
-                                        <label for="floatingInputValue">Nama</label>
+                                            value="{{ $p->kode_produk }}">
+                                        <label for="floatingInputValue">produk</label>
                                     </div>
                                     <div class="form-floating p-1">
                                         <input type="text" name="alamat" required="required" class="form-control"
-                                            value="{{ $p->alamat }}">
-                                        <label for="floatingInputValue">alamat</label>
+                                            value="{{ $p->banyak }}">
+                                        <label for="floatingInputValue">banyak</label>
                                     </div>
                                     <div class="form-floating p-1">
                                         <input type="text" name="telp" required="required" class="form-control"
-                                            value="{{ $p->telp }}">
-                                        <label for="floatingInputValue">telpon</label>
+                                            value="{{ $p->bayar }}">
+                                        <label for="floatingInputValue">bayar</label>
                                     </div>
-                                    <div class="modal-footer">
+                                    <div class="form-floating p-1">
+                                        <input type="text" name="telp" required="required" class="form-control"
+                                            value="{{ $p->kode_pembeli }}">
+                                        <label for="floatingInputValue">kode_pembeli</label>
+                                    </div>
+                                    <div class="form-floating p-1">
+                                        <input type="text" name="telp" required="required" class="form-control"
+                                            value="{{ $p->status }}">
+                                        <label for="floatingInputValue">status</label>
+                                    </div>
+                                    <div class="modal-footer">  
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Close</button>
                                         <button type="submit" class="btn btn-primary">Save Updates</button>
@@ -77,21 +87,21 @@
                     </div>
                 </div>
 
-                <!-- Ini tampil form delete produk -->
-                <div class="modal fade" id="ModalDeletebiodata{{ $p->nis }}" tabindex="-1"
+                <!-- Ini tampil form delete transaksi -->
+                <div class="modal fade" id="ModalDeletebiodata{{ $p->kode_pembelian }}" tabindex="-1"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus produk</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus transaksi</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="/biodata/delete/{{ $p->nis }}" method="get" class="form-floating">
+                                <form action="/transaksi/delete/{{ $p->kode_pembelian }}" method="get" class="form-floating">
                                     @csrf
                                     <div>
-                                        <h3>Yakin mau menghapus data <b>{{ $p->nama }}</b> ?</h3>
+                                        <h3>Yakin mau menghapus data <b>{{ $p->kode_pembelian }}</b> ?</h3>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
@@ -107,16 +117,16 @@
         </table>
     </div>
 
-    <!-- Ini tampil form tambah produk -->
+    <!-- Ini tampil form tambah transaksi -->
     <div class="modal fade" id="ModalTambahbiodata" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah produk</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah transaksi</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/biodata/storeinput" method="post" class="form-floating"
+                    <form action="/prodak/storeinput" method="post" class="form-floating"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="form-floating p-1">
@@ -148,4 +158,5 @@
             </div>
         </div>
     </div>
+
 @endsection

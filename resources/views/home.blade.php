@@ -1,11 +1,11 @@
 @extends('main')
 @section('konten')
     <!-- ======= Portfolio Section ======= -->
-    <section id="produk" class="portfolio">
+    <section id="prodak" class="portfolio">
         <div class="container">
 
             <div class="section-title" data-aos="fade-up">
-                <h2>Produk Printer</h2>
+                <h2>prodak Printer</h2>
                 <p>Cari Sesuai Keperluan Mencetakmu</p>
             </div>
 
@@ -13,7 +13,7 @@
                 <div class="col-lg-12 d-flex justify-content-center">
                     <ul id="portfolio-flters">
                         <li data-filter="*" class="filter-active">All</li>
-                        @foreach ($printer as $p)
+                        @foreach ($prodak as $p)
                         <li data-filter=".{{$p->nama}}">{{$p->nama}}</li>
                         @endforeach
                     </ul>
@@ -21,7 +21,7 @@
             </div>
 
             <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="400">
-                @foreach ($printer as $p)
+                @foreach ($prodak as $p)
                 <div class="col-lg-4 col-md-6 portfolio-item {{$p->nama}}">
                     <div class="portfolio-wrap">
                         <img src="assets/img/{{$p->gambar}}" class="img-fluid" alt="" width="400px" height="600px">
@@ -58,7 +58,7 @@
                                         <p class="card-text">Stok : {{$p->stok}}</p>
                                     </div>
                                 </div>
-                                <form action="/pembelian/storeinput" method="post" class="form-floating">
+                                <form action="/transaksi/storeinput" method="post" class="form-floating">
                                     @csrf
                                     <input type="hidden" name="kodeproduk" value="{{$p->kode}}">
                                     <input type="hidden" name="harga" value="{{$p->harga}}">
